@@ -8,6 +8,7 @@
       - ansible_virtualization_role == 'host'
       - ansible_board_vendor is search('Dell')
       - ansible_chassis_vendor is search('Dell')
+      - ansible_product_name is regex("PowerEdge (X|T|R|C|M)[0-9](5|4|3).*")
 
 - name: Import Dell GPG key
   ansible.builtin.apt_key:

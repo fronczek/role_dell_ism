@@ -1,5 +1,5 @@
 galaxy_info:
-  description: Install Dell iSM on Debian 10/11 systems
+  description: Install Dell iSM for PowerEdge servers on Debian systems
   author: Artur Fronczek
   company: HBF MANAGEMENT sp. z o. o.
   license: GPLv3
