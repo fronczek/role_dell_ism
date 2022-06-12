@@ -1,0 +1,32 @@
+---
+
+- name: Check if running on supported system
+  ansible.builtin.assert:
+    that:
+      - ansible_distribution|lower == 'debian'
+      - ansible_distribution_version is version('10', '>=')
+      - ansible_virtualization_role == 'host'
+      - ansible_board_vendor is search('Dell')
+      - ansible_chassis_vendor is search('Dell')
+
+- name: Import Dell GPG key
+  ansible.builtin.apt_key:
+    url: https://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc
+    state: present
+
+- name: Add Dell community repository
+  ansible.builtin.apt_repository:
+    repo: deb https://linux.dell.com/repo/community/openmanage/iSM/4200/buster/ buster main
+    state: present
+    filename: ism
+
+- name: Install iSM package
+  ansible.builtin.apt:
+    name: dcism
+    state: latest
+
+- name: Enable iSM service
+  ansible.builtin.service:
+    name: dcismeng
+    enabled: true
+    state: started
