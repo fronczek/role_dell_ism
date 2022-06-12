@@ -22,7 +22,7 @@
 
 - name: Install iSM package
   ansible.builtin.apt:
-    name: dcism
+    name: ['dcism-osc', 'dcism']
     state: latest
 
 - name: Enable iSM service
