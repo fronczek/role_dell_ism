@@ -30,4 +30,10 @@
   ansible.builtin.service:
     name: dcismeng
     enabled: true
-    state: started
+    state: restarted
+
+- name: Cleanup Dell community repository
+  ansible.builtin.apt_repository:
+    repo: deb https://linux.dell.com/repo/community/openmanage/iSM/4200/buster/ buster main
+    state: absent
+    filename: ism
