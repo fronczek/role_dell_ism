@@ -17,7 +17,7 @@
 
 - name: Add Dell community repository
   ansible.builtin.apt_repository:
-    repo: deb https://linux.dell.com/repo/community/openmanage/iSM/4200/buster/ buster main
+    repo: deb https://linux.dell.com/repo/community/openmanage/iSM/4300/buster/ buster main
     state: present
     filename: ism
 
@@ -34,6 +34,8 @@
 
 - name: Cleanup Dell community repository
   ansible.builtin.apt_repository:
-    repo: deb https://linux.dell.com/repo/community/openmanage/iSM/4200/buster/ buster main
+    repo: "{{ item }}"
     state: absent
     filename: ism
+  loop:
+    - "deb https://linux.dell.com/repo/community/openmanage/iSM/4200/buster/ buster main"
